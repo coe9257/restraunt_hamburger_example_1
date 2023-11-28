@@ -1,3 +1,4 @@
+//hamburger icon animation
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.hamburger_icon').addEventListener('click', function () {
         this.querySelector('.top_line').classList.toggle('active');
@@ -6,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+//drop down event listener
 document.addEventListener('DOMContentLoaded', function () { 
     if (!document.querySelector('.drop_down_container')) {
         function create_container() {
@@ -33,8 +35,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         const container = document.querySelector('.drop_down_container');
                         container.style.animation = `slideOut .5s forwards`;
 
+                        let timeoutExecuted = false;
+                        
+
                         setTimeout(function() {
-                            document.querySelector('body').removeChild(container);
+                            if (!timeoutExecuted) {
+                                document.querySelector('body').removeChild(container);
+                                timeoutExecuted = true;
+                            }
                         }, 500);
                     });
                 };
@@ -124,3 +132,81 @@ document.addEventListener('DOMContentLoaded', function () {
         create_container();
     };
 });
+
+// rotate background picture
+const body = document.querySelector('body');
+let currentIndex = 0;
+
+setInterval(function () {
+
+
+    const images = [
+        'url("./assets/tasty_hamburger.jpg")',
+        'url("./assets/tasty_hamburger_2.jpg")',
+        'url("./assets/tasty_hamburger_3.jpg")',
+        'url("./assets/tasty_hamburger_4.jpg")',
+        'url("./assets/tasty_hamburger_5.jpg")',
+        'url("./assets/tasty_hamburger_6.jpg")'
+    ];
+
+    currentIndex = (currentIndex + 1) % images.length;
+    body.style.backgroundImage = images[currentIndex];
+
+    const body_ = document.querySelector('body');
+    const style = window.getComputedStyle(body_);
+    const background_image = style.backgroundImage;
+
+    // Use regex to extract only the file name
+    const fileNameRegex = /\/([^\/]+")/; // Matches the last part after the last slash
+    const matches = background_image.match(fileNameRegex);
+
+    let fileName = "";
+
+    if (matches && matches[1]) {
+        fileName = matches[1].replace(/"$/, ''); // Remove the trailing double quote
+        // console.log("File Name:", fileName);
+    }
+
+    // console.log(document.querySelector('.w_slider_dot'))
+
+switch (fileName) {
+    case 'tasty_hamburger.jpg':
+        console.log("picture_1");
+        document.querySelector('.picture_6').style.backgroundColor = `rgba(255, 0, 0, 0.2)`;
+        document.querySelector('.picture_1').style.backgroundColor = `rgba(255, 0, 0, 0.5)`;
+        break;
+    case 'tasty_hamburger_2.jpg':
+        console.log("picture_2");
+        document.querySelector('.picture_1').style.backgroundColor = `rgba(255, 0, 0, 0.2)`;
+        document.querySelector('.picture_2').style.backgroundColor = `rgba(255, 0, 0, 0.5)`;
+        break;
+    case 'tasty_hamburger_3.jpg':
+        console.log("picture_3");
+        document.querySelector('.picture_2').style.backgroundColor = `rgba(255, 0, 0, 0.2)`;
+        document.querySelector('.picture_3').style.backgroundColor = `rgba(255, 0, 0, 0.5)`;
+        console.log("picture_3");
+        break;
+    case 'tasty_hamburger_4.jpg':
+        console.log("picture_4");
+        document.querySelector('.picture_3').style.backgroundColor = `rgba(255, 0, 0, 0.2)`;
+        document.querySelector('.picture_4').style.backgroundColor = `rgba(255, 0, 0, 0.5)`;
+        console.log("picture_4");
+        break;
+    case 'tasty_hamburger_5.jpg':
+        console.log("picture_5");
+        document.querySelector('.picture_4').style.backgroundColor = `rgba(255, 0, 0, 0.2)`;
+        document.querySelector('.picture_5').style.backgroundColor = `rgba(255, 0, 0, 0.5)`;
+        console.log("picture_5");
+        break;
+    case 'tasty_hamburger_6.jpg':
+        console.log("picture_6");
+        document.querySelector('.picture_5').style.backgroundColor = `rgba(255, 0, 0, 0.2)`;
+        document.querySelector('.picture_6').style.backgroundColor = `rgba(255, 0, 0, 0.5)`;
+        console.log("picture_6");
+        break;
+        default:     
+}
+
+}, 3500);
+
+

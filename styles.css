@@ -12,7 +12,7 @@ html {
 
 body {
     background-image: url("./assets/tasty_hamburger.jpg");
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat; 
     position: relative;
 }
@@ -89,6 +89,10 @@ body {
     border: 1px solid rgba(255, 0, 0, 0.5);
     background-color: rgba(255, 0, 0, 0.2);
     border-radius: 50%;
+}
+
+.picture_1 {
+    background-color: rgb(136, 35, 35);
 }
 
 footer {
@@ -202,5 +206,29 @@ footer,
     }
     to {
         top: -100%;
+    }
+}
+
+@media screen and (min-width: 348px) {
+    .slider_background_pictures {
+        max-width: 174px;
+    }
+}
+
+@media screen and (min-width: 348px) { 
+    .slider_background_pictures {
+        margin-right: 10%;
+     }   
+}
+
+@media screen and (min-width: 512px) {
+    body {
+        background-size: cover;
+    }
+}
+
+@media screen and (min-width: 598px) {
+    .footer_logo {
+        width: 10rem;
     }
 }
